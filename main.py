@@ -2,21 +2,20 @@ from class_Folder import Folder
 from class_File import File
 
 
+
 files = []
 folders = []
-
 
 def main_sys():
     state_layer1 = ""
     state_layer2 = ""
-    askstate = True
     if input("").lower() == "start":
-            if askstate == True:
-               state_layer1 = input("Edit / Create / View\n").lower()
-            state_layer2 = input("File / Folder\n")
+            state_layer1 = input("Edit / Create / View\n").lower()
             if state_layer1 == "edit":
                if state_layer2 == "file":
                     name = input("File Name\n")
+                    # write some logic to find the file first
+
                     edit = input("Choose an option: Add Content, Delete Content, Find, or Find and Replace\n").lower()
                     if edit == "add content":
                          name = input("File Name\n")
@@ -33,7 +32,9 @@ def main_sys():
                                    askstate = True
                                    main_sys()
                               else:
-                                   exit()
+                                   print("You found an error!")
+
+
                     elif edit == "delete content":
                          name = input("File Name\n")
                          for i in range(len(files)):
@@ -51,7 +52,9 @@ def main_sys():
                                    askstate = True
                                    main_sys()
                               else:
-                                   exit()
+                                   print("You found an error!")
+
+
                     elif edit == "find":
                          name = input("File Name\n")
                          letter = input("Enter the letter you want to find\n")
@@ -64,7 +67,9 @@ def main_sys():
                                    askstate = True
                                    main_sys()
                               else:
-                                   exit()
+                                   print("You found an error!")
+
+
                     elif edit == "find and replace":
                          name = input("File Name\n")
                          letter_2 = input("Letter to be replaced\n")
@@ -72,6 +77,9 @@ def main_sys():
                          for i in range(len(files)):
                               if files[i].get_file_name() == name:
                                    File.find_and_replace(files[i], letter_2, letter)
+
+
+
                elif state_layer2 == "folder":
                     ask = input("Delete File, Add File?\n").lower()
                     if ask == "delete file":
@@ -93,7 +101,9 @@ def main_sys():
                                    askstate = True
                                    main_sys()
                               else:
-                                   exit()
+                                   print("You found an error!")
+
+
                     elif ask == "add file":
                          name = input("Name of the folder\n")
                          for i in range(len(folders)):
@@ -113,9 +123,13 @@ def main_sys():
                                    askstate = True
                                    main_sys()
                               else:
-                                   exit()
+                                   print("You found an error!")
+               
+
+
+
                elif state_layer1 == "create":
-                    if input("File / Folder").lower() == "file":
+                    if input("File / Folder\n").lower() == "file":
                          pramname_create_file = input("File Name\n")
                          pramtype_create_file = input("File Type\n")
                          new_file = File(pramname_create_file, pramtype_create_file)
@@ -126,18 +140,19 @@ def main_sys():
                               askstate = True
                               main_sys()
                          else:
-                              exit()
+                              main_sys()
                     else:
                          pramname_create_folder = input("Folder Name\n")
                          new_folder = Folder(pramname_create_folder)
                          folders.append(new_folder)
-                    if input("").lower() == "restart":
-                         state_layer1 = ""
-                         state_layer2 = ""
-                         askstate = True
-                         main_sys()
-                    else:
-                         exit()
+                         if input("").lower() == "restart":
+                              state_layer1 = ""
+                              state_layer2 = ""
+                              askstate = True
+                              main_sys()
+                         else:
+                              None
+
                elif state_layer1 == "view":
                     state_layer2 = input("File / Folder\n").lower()
                     if state_layer2 == "file":
@@ -156,7 +171,9 @@ def main_sys():
                                    askstate = False
                                    main_sys()
                               else:
-                                   exit()
+                                   print("You found an error!")
+
+
                     elif state_layer2 == "folder":
                          name = input("Name of Folder\n")
                          for i in range(len(folders)):
@@ -167,5 +184,5 @@ def main_sys():
                                    askstate = False
                                    main_sys()
                               else:
-                                   exit()
+                                   print("You found an error!")
 main_sys()

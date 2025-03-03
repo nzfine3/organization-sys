@@ -9,17 +9,22 @@ class Folder:
 
     def get_folder_name(self) -> str:
         return self.folder_name
+    
     def set_folder_name(self, new_folder_name) -> None:
         self.folder_name = new_folder_name
     
     def add_file(self, new_file) -> None:
         self.files.append(new_file)
+
     def ls(self) -> File:
-        return self.files
+        for i in range(len(self.files)):
+            print(self.files[i].get_file_name())
+    
     def get_file(self, file_name) -> File:
         for i in range(len(self.files)):
-            if self.files[i].file_name == file_name:
+            if self.files[i].get_file_name() == file_name:
                 return self.files[i]
+            
     def delete_file(self, file_name) -> None:
         for i in range(len(self.files)):
             if self.files[i].file_name == file_name:
